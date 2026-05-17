@@ -8,7 +8,7 @@
 
 최상위 디렉터리에서 백엔드와 프론트엔드가 독립된 모듈로 나란히 관리되며, 깃허브 데스크톱(GitHub Desktop)을 통해 통합 버전 관리가 이루어집니다.
 
-```
+```text
 attendance_prj/ (★ 루트 저장소 - 통합 Git 관리)
 ├── README.md
 ├── .gitignore
@@ -66,26 +66,3 @@ npm install
 npm run dev
 ```
 * 기본 로컬 접속 주소: `http://localhost:5173/`
-
----
-
-## ⚙️ 환경 설정 및 배포 유의사항 (Configuration)
-
-### 데이터베이스 프로필 관리 (`application-prod.yml`)
-운영 배포 환경에서는 보안 및 최적화를 위해 데이터베이스 접속 정보를 환경 변수로 주입받습니다. 드라이버 클래스 네임(`driver-class-name`)은 주입되는 JDBC URL 주소(`jdbc:postgresql://...`)를 바탕으로 스프링 부트가 자동 매핑하도록 최적화되어 있습니다.
-
-```yaml
-spring:
-  datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-```
-
-### Git 버전 관리 규칙
-* 본 프로젝트는 루트의 `attendance_prj`에서만 `.git` 저장소를 생성하여 하위 모듈을 통합 관리합니다.
-* 각 하위 폴더 생성 시 자동으로 만들어지는 개별 숨김 `.git` 폴더는 충돌 방지를 위해 모두 자식 디렉터리에서 제거된 상태를 유지해야 합니다.
